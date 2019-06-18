@@ -1,6 +1,6 @@
 licenses(["notice"])  # Apache 2
 
-load("@envoy//bazel:envoy_build_system.bzl", "envoy_cc_library", "envoy_package")
+load("@envoy//bazel:envoy_build_system.bzl", "envoy_cc_binary", "envoy_cc_library", "envoy_package")
 
 envoy_package()
 
@@ -16,4 +16,11 @@ cc_library(
     name = "envoy_jni_interface_lib",
     srcs = ["jni_interface.cc"],
     deps = [":envoy_main_interface_lib"],
+)
+
+envoy_cc_binary(
+    name = "test_binary",
+    srcs = ["test_binary.cc"],
+    repository = "@envoy",
+    deps = ["envoy_main_interface_lib"],
 )
